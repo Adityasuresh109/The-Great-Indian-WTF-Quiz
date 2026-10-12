@@ -212,7 +212,7 @@ app.addEventListener('click', async e=>{
  if(action==='copy-link'){try{await navigator.clipboard.writeText(getLink('join'));flash('Join link copied. Send it to your friends!');}catch{prompt('Copy this player link:',getLink('join'));}return;}
  if(action==='open-screen'){window.open(getLink('screen'),'_blank','noopener');return;}
  if(action==='fullscreen'){const el=document.documentElement;if(!document.fullscreenElement)el.requestFullscreen?.();else document.exitFullscreen?.();return;}
- if(action==='advance')return runAction(async()=>{checkHost();await advance();});
+ if(action==='advance'||action==='start')return runAction(async()=>{checkHost();await advance();});
  if(action==='undo')return runAction(async()=>{checkHost();await undo();});
  if(action==='pick'){picked=el.dataset.choice;render();return;}
  if(action==='submit-pick')return runAction(async()=>{if(!picked)throw new Error('Choose A, B, C or D.');await backend.submit(code,room.qKey,picked,room.revealCount);});
